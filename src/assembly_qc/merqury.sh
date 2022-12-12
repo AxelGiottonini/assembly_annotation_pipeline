@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#SBATCH --cpus-per-task=32
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
 #SBATCH --time=02:00:00
 #SBATCH --job-name=assembly_qc.merqury
@@ -11,26 +11,44 @@
 module load UHTS/Analysis/pilon/1.22;
 
 ASSDIR=$1
-INDIR=./out/assembly/$ASSDIR
-OUTDIR=./out/assembly_qc/$ASSDIR/
-MERDIR=./out/assembly_qc/meryl
+INDIR=$( pwd )/out/assembly/$ASSDIR
+OUTDIR=$( pwd )/out/assembly_qc/$ASSDIR
+MERDIR=$( pwd )/out/assembly_qc/meryl/db.meryl
 
 mkdir $OUTDIR/merqury
-mkdir $OUTDIR/merqury/polished
-mkdir $OUTDIR/merqury/unpolished
+
+## Unpolished
+mkdir $OUTDIR/merqury/unpolished $OUTDIR/merqury/unpolished/db.meryl
+cd $OUTDIR/merqury/unpolished
+
+cp $MERDIR/* db.meryl/
+cp $INDIR/assembly.fasta assembly.fasta
 
 singularity exec \
-	--bind $INDIR --bind $OUTDIR/merqury --bind $OUTDIR/merqury/unpolished \
+	--bind . \
 	/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \
 	merqury.sh \
-		$MERDIR/db.meryl \
-		$INDIR/assembly.fasta \
-		$OUTDIR/merqury/unpolished
+		db.meryl \
+		assembly.fasta \
+		out
+
+rm -rf db.meryl assembly.fasta
+cd - 
+
+## Polished
+mkdir $OUTDIR/merqury/polished $OUTDIR/merqury/polished/db.meryl
+cd $OUTDIR/merqury/polished
+
+cp $MERDIR/* db.meryl/
+cp $INDIR/assembly.polished.fasta assembly.fasta
 
 singularity exec \
-	--bind $INDIR --bind $OUTDIR/merqury --bind $OUTDIR/merqury/polished\
+	--bind . \
 	/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \
 	merqury.sh \
-		$MERDIR/db.meryl \
-		$INDIR/assembly.polished.fasta \
-		$OUTDIR/merqury/polished
+		db.meryl \
+		assembly.fasta \
+		out
+
+rm -rf db.meryl assembly.fasta
+cd - 
