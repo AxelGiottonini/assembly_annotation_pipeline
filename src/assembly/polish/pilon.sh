@@ -22,4 +22,7 @@ java -Xmx45g -jar /mnt/software/UHTS/Analysis/pilon/1.22/bin/pilon-1.22.jar \
 
 mv $OUTDIR/pilon.fasta $INDIR/assembly.polished.fasta
 
+awk -i ./src/assembly/polish/update_id.awk $INDIR/assembly.polished.fasta > $INDIR/assembly.polished.edited.fasta
+mv $INDIR/assembly.polished.edited.fasta > $INDIR/assembly.polished.fasta
+
 module unload UHTS/Analysis/pilon/1.22;
