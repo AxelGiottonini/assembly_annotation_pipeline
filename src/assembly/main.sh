@@ -10,3 +10,4 @@
 
 sbatch ./src/assembly/canu.sh
 sbatch ./src/assembly/flye.sh
+sbatch ./src/assembly/trinity.sh
