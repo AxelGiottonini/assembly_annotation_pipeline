@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=128G
-#SBATCH --time=1-00:00:00
+#SBATCH --mem=64G
+#SBATCH --time=01-00:00:00
 #SBATCH --job-name=te_annotation.automated.edta
 #SBATCH --mail-user=axel.giottonini@students.unibe.ch
 #SBATCH --mail-type=end
@@ -23,7 +23,7 @@ singularity exec \
         --genome $INDIR/assembly.polished.fasta \
         --species others \
         --step all \
-        --cds $REFDIR/TAIR10_cds_20110103_representative_gene_model_updated \
+        --cds $REFDIR/TAIR10_cds_20110103_representative_gene_model \
         --anno 1 \
         --threads $SLURM_CPUS_PER_TASK
 
