@@ -12,7 +12,7 @@ module load SequenceAnalysis/GenePrediction/maker/2.31.9;
 
 ASSDIR=$1
 GENOME=$( echo "$( pwd )/out/assembly/${ASSDIR}/assembly.polished.fasta" | sed -e 's/[]\/$*.^[]/\\&/g')
-TRANSCRIPTOME=$( echo "$( pwd )/out/assembly/trinity/Trinity.fasta" | sed -e 's/[]\/$*.^[]/\\&/g' )
+TRANSCRIPTOME=$( echo "$( pwd )/out/assembly/trinity/assembly.fasta" | sed -e 's/[]\/$*.^[]/\\&/g' )
 PROTEINS=$( echo "/data/courses/assembly-annotation-course/CDS_annotation/Atal_v10_CDS_proteins, /data/courses/assembly-annotation-course/CDS_annotation/uniprot-plant_reviewed.fasta" | sed -e 's/[]\/$*.^[]/\\&/g' )
 TELib=$( echo "$( pwd )/out/te_annotation/${ASSDIR}/automated/assembly.polished.fasta.mod.EDTA.TElib.fa" | sed -e 's/[]\/$*.^[]/\\&/g' )
 REPProteins=$( echo "/data/courses/assembly-annotation-course/CDS_annotation/PTREP20" | sed -e 's/[]\/$*.^[]/\\&/g' )
