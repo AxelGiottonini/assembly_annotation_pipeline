@@ -2,7 +2,7 @@
 
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=64MB
-#SBATCH --time=01:00:00
+#SBATCH --time=10:00:00
 #SBATCH --job-name=te_dynamics.update_gff
 #SBATCH --mail-user=axel.giottonini@students.unibe.ch
 #SBATCH --mail-type=END,FAIL
