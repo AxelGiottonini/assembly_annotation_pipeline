@@ -9,9 +9,7 @@
 #SBATCH --partition=pall
 
 mkdir ./out/te_dynamics
-mkdir ./out/te_dynamics/canu ./out/te_dynamics/flye
-mkdir ./out/te_dynamics/canu/plant ./out/te_dynamics/canu/brassicaceae 
-mkdir ./out/te_dynamics/flye/plant ./out/te_dynamics/flye/brassicaceae
+mkdir ./out/te_dynamics/canu ./out/te_dynamics/flye ./out/te_dynamics/ref
 
 UPDATE_CANU=$(sbatch ./src/te_dynamics/update_gff.sh canu)
 UPDATE_FLYE=$(sbatch ./src/te_dynamics/update_gff.sh flye)
@@ -21,3 +19,4 @@ FASTA_FLYE=$(sbatch --dependency=afterok:${UPDATE_FLYE##* } ./src/te_dynamics/ge
 
 sbatch --dependency=afterok:${FASTA_CANU##* } ./src/te_dynamics/te_sorter.sh canu
 sbatch --dependency=afterok:${FASTA_FLYE##* } ./src/te_dynamics/te_sorter.sh flye
+sbatch --dependency=afterok:${FASTA_FLYE##* } ./src/te_dynamics/te_sorter.sh ref
