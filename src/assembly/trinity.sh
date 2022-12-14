@@ -33,4 +33,4 @@ rm -rf $OUTDIR/both.fa $OUTDIR/inchworm.K25.L25.DS.fa $OUTDIR/jellyfish.kmers.fa
     $OUTDIR/chrysalis $OUTDIR/insilico_read_normalization $OUTDIR/partitioned_reads.files.list $OUTDIR/recursive_trinity.cmds $OUTDIR/scaffolding_entries.sam \
     $OUTDIR/.iworm.ok $OUTDIR/.jellyfish_count.ok  $OUTDIR/.jellyfish_histo.ok $OUTDIR/.iworm_renamed.ok $OUTDIR/.jellyfish_dump.ok
 
-mv Trinity.fasta assembly.fasta
+mv $OUTDIR/Trinity.fasta $OUTDIR/assembly.fasta
