@@ -1,4 +1,6 @@
 slurm-*.out
 data/
 out/
+salmon/
+.ipynb_checkpoints/
 *.log

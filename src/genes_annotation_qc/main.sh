@@ -8,12 +8,18 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --partition=pall
 
-mkdir ./out/genes_annotation_qc
-mkdir ./out/genes_annotation_qc/canu ./out/genes_annotation_qc/flye
+#mkdir ./out/genes_annotation_qc
+#mkdir ./out/genes_annotation_qc/canu ./out/genes_annotation_qc/flye
 
-sbatch ./src/genes_annotation_qc/busco.sh canu
-sbatch ./src/genes_annotation_qc/busco.sh flye
+#sbatch ./src/genes_annotation_qc/busco.sh canu
+#sbatch ./src/genes_annotation_qc/busco.sh flye
 
-mkdir ./out/genes_annotation_qc/canu/homologies ./out/genes_annotation_qc/flye/homologies
-sbatch ./src/genes_annotation_qc/homologies.sh canu
-sbatch ./src/genes_annotation_qc/homologies.sh flye
+#mkdir ./out/genes_annotation_qc/canu/homologies ./out/genes_annotation_qc/flye/homologies
+#sbatch ./src/genes_annotation_qc/homologies.sh canu
+#sbatch ./src/genes_annotation_qc/homologies.sh flye
+
+#mkdir ./out/genes_annotation_qc/canu/salmon ./out/genes_annotation_qc/flye/salmon
+sbatch ./src/genes_annotation_qc/salmon.sh canu 21
+sbatch ./src/genes_annotation_qc/salmon.sh canu 31
+sbatch ./src/genes_annotation_qc/salmon.sh flye 21
+sbatch ./src/genes_annotation_qc/salmon.sh flye 31
