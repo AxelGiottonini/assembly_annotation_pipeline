@@ -11,9 +11,9 @@
 mkdir ./out/genes_annotation_qc
 mkdir ./out/genes_annotation_qc/canu ./out/genes_annotation_qc/flye
 
-#sbatch ./src/genes_annotation_qc/busco.sh canu
+sbatch ./src/genes_annotation_qc/busco.sh canu
 sbatch ./src/genes_annotation_qc/busco.sh flye
 
 mkdir ./out/genes_annotation_qc/canu/homologies ./out/genes_annotation_qc/flye/homologies
-#sbatch ./src/genes_annotation_qc/homologies.sh canu
+sbatch ./src/genes_annotation_qc/homologies.sh canu
 sbatch ./src/genes_annotation_qc/homologies.sh flye

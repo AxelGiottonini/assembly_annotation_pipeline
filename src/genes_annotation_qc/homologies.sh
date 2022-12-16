@@ -16,9 +16,9 @@ OUTDIR=$( pwd )/out/genes_annotation_qc/$ASSDIR/homologies
 
 # Get the list of proteins
 sed 's/\(>\S*\).*/\1/g' $INDIR/annotated.proteins.fasta > $OUTDIR/proteins.fasta
-grep ">" $INDIR/annotated.proteins.fasta | sed 's/\(>\S*\).*/\1/g' > $OUTDIR/proteins.txt
-grep ">" $INDIR/annotated.proteins.fasta | grep "Protein of unknown function" | sed 's/\(>\S*\).*/\1/g' > $OUTDIR/proteins.known.txt
-grep ">" $INDIR/annotated.proteins.fasta | grep -v "Protein of unknown function" | sed 's/\(>\S*\).*/\1/g' > $OUTDIR/proteins.unknown.txt
+grep ">" $INDIR/annotated.proteins.fasta | sed 's/\(>\S*\).*/\1/g' | sed 's/>//g' > $OUTDIR/proteins.txt
+grep ">" $INDIR/annotated.proteins.fasta | grep "Protein of unknown function" | sed 's/\(>\S*\).*/\1/g' | sed 's/>//g' > $OUTDIR/proteins.known.txt
+grep ">" $INDIR/annotated.proteins.fasta | grep -v "Protein of unknown function" | sed 's/\(>\S*\).*/\1/g' | sed 's/>//g' > $OUTDIR/proteins.unknown.txt
 
 seqkit grep \
     -f $OUTDIR/proteins.known.txt \
