@@ -8,8 +8,6 @@
 #SBATCH --mail-type=end
 #SBATCH --partition=pall
 
-module load UHTS/Analysis/pilon/1.22;
-
 ASSDIR=$1
 INDIR=./out/assembly/$ASSDIR
 OUTDIR=./out/assembly_qc/$ASSDIR
