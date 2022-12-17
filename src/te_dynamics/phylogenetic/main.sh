@@ -14,8 +14,8 @@ mkdir ./out/te_dynamics/$ASSDIR/phylogenetic
 mkdir ./out/te_dynamics/$ASSDIR/phylogenetic/Ty1-RT ./out/te_dynamics/$ASSDIR/phylogenetic/Ty3-RT
 
 if [[ "$ASSDIR" == "ref" ]]; then
-    sed 's/\(.*\)#.*#.*Ty1.*/\1_Ty1-RT/g' ./out/te_dynamics/$ASSDIR/*.fasta.rexdb-plant.cls.pep \
-        | sed 's/\(.*\)#.*#.*Ty3.*/\1_Ty3-RT/g' \
+    sed 's/\(.*\)#.*#.*Ty1-RT.*/\1_Ty1-RT/g' ./out/te_dynamics/$ASSDIR/*.fasta.rexdb-plant.cls.pep \
+        | sed 's/\(.*\)#.*#.*Ty3-RT.*/\1_Ty3-RT/g' \
         > ./out/te_dynamics/$ASSDIR/phylogenetic/TE.pep
 
     sbatch ./src/te_dynamics/phylogenetic/extract_prot_seq.sh $ASSDIR

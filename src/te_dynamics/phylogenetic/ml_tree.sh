@@ -16,7 +16,6 @@ ASSDIR=$1
 RTs=('Ty1-RT' 'Ty3-RT')
 RT=${RTs[$SLURM_ARRAY_TASK_ID]}
 
-INPDIR=./out/te_dynamics/$ASSDIR/phylogenetic/$RT
 OUTDIR=./out/te_dynamics/$ASSDIR/phylogenetic/$RT
 
 FastTree -out $OUTDIR/${ASSDIR}_${RT}.tree $OUTDIR/alignment.fasta
