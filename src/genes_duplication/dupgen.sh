@@ -64,9 +64,7 @@ DupGen_finder.pl -i $OUTDIR -t Ath -c Nnu -o $OUTDIR
 
 cd $OUTDIR
 zip dupgen.other.zip Ath.gff Ath_Nnu.gff Ath.blast Ath_Nnu.blast Ath.dispersed.* Ath.proximal.* Ath.tandem.* Ath.transposed.* \
-    annotated.transcripts.simplified.fasta Ath_Nnu.collinearity Ath.wgd.genes.id Ath.gff.sorted Ath.wgd.genes Ath.singletons \
-    Ath.wgd.pairs 
+    Ath_Nnu.collinearity Ath.gff.sorted Ath.singletons
 rm Ath.gff Ath_Nnu.gff Ath.blast Ath_Nnu.blast Ath.dispersed.* Ath.proximal.* Ath.tandem.* Ath.transposed.* \
-    annotated.transcripts.simplified.fasta Ath_Nnu.collinearity Ath.wgd.genes.id Ath.gff.sorted Ath.wgd.genes Ath.singletons \
-    Ath.wgd.pairs
+    Ath_Nnu.collinearity Ath.gff.sorted Ath.singletons
 cd -
