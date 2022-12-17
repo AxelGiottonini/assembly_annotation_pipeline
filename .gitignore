@@ -2,5 +2,6 @@ slurm-*.out
 data/
 out/
 salmon/
+dupgen/
 .ipynb_checkpoints/
 *.log
