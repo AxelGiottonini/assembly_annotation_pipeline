@@ -33,6 +33,7 @@ around within a genome. They are found in the genomes of almost all organisms.
 Transposable elements can insert themselves into different locations within a genome, 
 and they can also be copied and transmitted to offspring.
 ![Transposable Elements](./img/te_classification.png)
+**[source](https://www.nature.com/articles/nrg2165)**
 
 ### Genome Duplication Event
 Genome duplication, also known as genome duplication or whole genome duplication, 
@@ -49,16 +50,28 @@ of genes.
 ## Pipeline
 Here is briefly presented the pipeline. If you want further details, a readme
 file is present at each main process of the pipeline:
+- **reads_qc:** The quality of the reads was assessed using `FastQC` and `Jellyfish`.
 - **assembly:** Genomes assembly were produced using pacbio reads with two
 different assembler: `Flye` and `Canu`. A transcriptome assembly was build 
 with the Illumina-RNAseq reads using `Trinity`.
-- assembly_qc
-- genes_annotation
-- genes_annotation_qc
-- genes_duplication
-- **reads_qc:** 
-- te_annotation
-- te_dynamics
+- **assembly_qc:** We checked the quality of the assemblies using three tools:
+`BUSCO`, `Quast` and `Merqury`. `BUSCO` performs an analysis on genes expected
+to be unique in the genome. `Quast` provides us information on the completeness
+of the genome by comparison against a reference genome. `Merqury` generate a
+k-mer spectrum of the assembly.
+- **assembly_comparison:** We compared the assemblies against a reference genome
+using `Mummer`.
+- **te_annotation:** We annotated transposable elements using `EDTA`.
+- **te_dynamics:** We analyzed the dynamics of the tranposable elements using
+`TESorter`. We then used a pipeline build with `Clustal Omega` and `FastTree` to 
+study the phylogenetic of the TEs and the scripts provided for the course for the
+dating of the TEs.
+- **genes_annotation:** We annotated the genes of the assemblies using `Maker`.
+- **genes_annotation_qc:** We checked the quality of the annotation using `Busco` and
+`Salmon`. A script to obtain statistics of known and unknown proteins was also 
+developped.
+- **genes_duplication:** The pipeline to identify genes duplication was build using
+`DupGen` and the scripts provided in the course.
 
 ## Results
 Although some tools from the pipeline provide results to be reported, we also
@@ -80,7 +93,7 @@ smaller contigs into a bigger contig what may explain why the `BUSCO` results
 of `Flye` are slightly better than those of `Canu`.
 
 The `te_dynamics.ipynb` notebook provides the tree visualisation of the 
-retrotranscriptase for different TE (Gypsy and Copia). It also displays a plot
+retrotranscriptase for different TE types. It also displays a plot
 presenting the dating of the TEs.
 
 The `genes_annotation_qc.ipynb` notebook provides the analysis for the different
@@ -92,3 +105,6 @@ $k$-mers length. Finally an implementation of the `IGV` viewer is present.
 
 The `genes_duplication.ipynb` notebook simply provides a viewer for the different
 results obtained from DupGen.
+
+---
+*The introduction was generated using GPT3 from OpenAI.*
