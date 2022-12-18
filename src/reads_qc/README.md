@@ -1,3 +1,4 @@
-# READS QUALITY CHECK AND STATISTICS
+# Reads Quality Check and Statistics
 
-Run `./src/reads_qc/main.sh` to perform `FastQC` and the $k$-mer stats with `Jellyfish`. To visualize the $k$-mer histogram use `GenomeScope`.
+We used `FastQC` to compute the quality check of the reads and `jellyfish` counting for
+21-mers (`-m`) at 50x coverage (`-s`).
