@@ -1,7 +1,11 @@
 # Assembly
 
-The assembly pipeline handle three assemblers: `Canu` and `Flye` for the genome
-assembly using `PacBio` reads and `Trinity` for the transcriptome assembly
-using `RNASeq` reads. Both genome assemblers are run with an estimated genome
-size of 130MB. Genome assemblies are then polished using `Pilon` which requires
-to align `Illumina` reads to the assembly (`Bowtie` and `samtools`).
+## Genome Assembly
+The genome assembly pipeline handle two assemblers, `Canu` and `Flye`, used 
+with the `PacBio` reads. Each assembler is run with an estimated genome size
+of 130MB. `Illumina` reads are then aligned to the produced assembly using 
+`Bowtie` and `samtools` for `.sam` to `.bam` conversion. The alignment is then
+used with `Pilon` to polish the assembly.
+
+## Transcriptome Assembly
+We use `Trinity` for transcriptome assembly using `RNASeq` reads.
