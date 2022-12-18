@@ -33,3 +33,4 @@ sed 's/\(>TE_.*([-+.?])\)\(#.*\)\(\:Ty[13]-RT\)\(;.*\)/\1\3/g' ./out/te_dynamics
 EXTRACT=$(sbatch ./src/te_dynamics/phylogenetic/extract_prot_seq.sh $ASSDIR)
 ALIGN=$(sbatch --dependency=afterok:${EXTRACT##* } ./src/te_dynamics/phylogenetic/align.sh $ASSDIR)
 TREE=$(sbatch --dependency=afterok:${ALIGN##* } ./src/te_dynamics/phylogenetic/ml_tree.sh $ASSDIR)
+COLOR=$(sbatch --dependency=afterok:${TREE##* } ./src/te_dynamics/phylogenetic/color.sh $ASSDIR)

@@ -25,3 +25,5 @@ PHYLO_REF=$(sbatch --dependency=afterok:${SORTER_REF##* } ./src/te_dynamics/phyl
 PHYLO_CANU=$(sbatch --dependency=afterok:${SORTER_CANU##* }:${PHYLO_REF##*} ./src/te_dynamics/phylogenetic/main.sh canu)
 PHYLO_FLYE=$(sbatch --dependency=afterok:${SORTER_FLYE##* }:${PHYLO_REF##*} ./src/te_dynamics/phylogenetic/main.sh flye)
 
+DATING_CANU=$(sbatch --dependency=afterok:${SORTER_CANU##* }:${PHYLO_REF##*} ./src/te_dynamics/dating/main.sh canu)
+DATING_FLYE=$(sbatch --dependency=afterok:${SORTER_FLYE##* }:${PHYLO_REF##*} ./src/te_dynamics/dating/main.sh flye)

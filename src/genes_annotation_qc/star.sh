@@ -19,34 +19,34 @@ GENDIR=$( pwd )/out/assembly/$ASSDIR
 READS=($( pwd )/data/RNAseq/*.fastq.gz)
 
 # Convert GFF to GTF
-#gffread -E $INDIR/annotated.all.gff -T -o $OUTDIR/annotated.all.gtf
+gffread -E $INDIR/annotated.all.gff -T -o $OUTDIR/annotated.all.gtf
 
 # Generate genome index for star
-#mkdir $OUTDIR/genome_index
-#cd $OUTDIR/genome_index
+mkdir $OUTDIR/genome_index
+cd $OUTDIR/genome_index
 
-#STAR \
-#    --runThreadN $SLURM_CPUS_PER_TASK \
-#    --runMode genomeGenerate \
-#    --genomeDir $OUTDIR/genome_index \
-#    --genomeFastaFiles $GENDIR/assembly.polished.fasta \
-#    --sjdbGTFfile $OUTDIR/annotated.all.gtf
+STAR \
+    --runThreadN $SLURM_CPUS_PER_TASK \
+    --runMode genomeGenerate \
+    --genomeDir $OUTDIR/genome_index \
+    --genomeFastaFiles $GENDIR/assembly.polished.fasta \
+    --sjdbGTFfile $OUTDIR/annotated.all.gtf
 
-#cd - 
+cd - 
 
 # Map RNASeq reads
-#zcat ${READS[0]} > $OUTDIR/reads.1.fasta
-#zcat ${READS[1]} > $OUTDIR/reads.2.fasta
+zcat ${READS[0]} > $OUTDIR/reads.1.fasta
+zcat ${READS[1]} > $OUTDIR/reads.2.fasta
 
-##STAR \
-#    --runThreadN $SLURM_CPUS_PER_TASK \
-#    --genomeDir $OUTDIR/genome_index \
-#    --readFilesIn $OUTDIR/reads.1.fasta $OUTDIR/reads.2.fasta \
-#    --outFileNamePrefix $OUTDIR/ \
-#    --outSAMtype BAM SortedByCoordinate \
-#    --outFilterMultimapNmax 10 \
-#    --outFilterMismatchNoverLmax 0.01 \
-#    --alignIntronMax 60000
+STAR \
+    --runThreadN $SLURM_CPUS_PER_TASK \
+    --genomeDir $OUTDIR/genome_index \
+    --readFilesIn $OUTDIR/reads.1.fasta $OUTDIR/reads.2.fasta \
+    --outFileNamePrefix $OUTDIR/ \
+    --outSAMtype BAM SortedByCoordinate \
+    --outFilterMultimapNmax 10 \
+    --outFilterMismatchNoverLmax 0.01 \
+    --alignIntronMax 60000
 
 samtools index $OUTDIR/Aligned.sortedByCoord.out.bam -@ $SLURM_CPUS_PER_TASK
 samtools faidx $GENDIR/assembly.polished.fasta
