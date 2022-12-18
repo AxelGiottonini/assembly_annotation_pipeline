@@ -32,7 +32,7 @@ Transposable elements, also known as transposons, are pieces of DNA that can mov
 around within a genome. They are found in the genomes of almost all organisms. 
 Transposable elements can insert themselves into different locations within a genome, 
 and they can also be copied and transmitted to offspring.
-![Transposable Elements](https://d3i71xaburhd42.cloudfront.net/2dd1e797975cee69fa81d099b1671a5ce3b331e5/11-Figure4-1.png)
+![Transposable Elements](./img/te_classification.png)
 
 ### Genome Duplication Event
 Genome duplication, also known as genome duplication or whole genome duplication, 
